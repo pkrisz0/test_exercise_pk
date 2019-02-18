@@ -1,13 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+
+import Address from './containers/Address';
+import store from './store';
 
 const App = () => (
   <div>
-    <p>HAIII</p>
+    <Address />
   </div>
 );
 
 ReactDOM.render(
-  <App />,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('root'),
 );
