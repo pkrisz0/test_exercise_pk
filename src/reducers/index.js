@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import { SEARCH_ADDRESS } from '../actions';
+import { SEARCH_ADDRESS, CLEAR_ADDRESS } from '../actions';
 
 const initalState = {
-  distance: undefined,
+  distance: 3,
+  current_address: undefined,
 };
 
 function distanceReducer(state = initalState, action) {
@@ -11,6 +12,12 @@ function distanceReducer(state = initalState, action) {
     case SEARCH_ADDRESS:
       return {
         ...state,
+        current_address: action.query,
+      };
+    case CLEAR_ADDRESS:
+      return {
+        ...state,
+        current_address: undefined,
       };
     default:
       return state;

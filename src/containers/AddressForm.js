@@ -18,7 +18,7 @@ const renderField = ({
 
 const AddressForm = (props) => {
   const {
-    handleSubmit, pristine, reset, submitting,
+    handleSubmit, pristine, reset, submitting, onClear
   } = props;
   return (
     <form onSubmit={handleSubmit}>
@@ -48,7 +48,7 @@ const AddressForm = (props) => {
           <button type="submit" disabled={pristine || submitting}>
             Submit
           </button>
-          <button type="button" disabled={pristine || submitting} onClick={reset}>
+          <button type="button" disabled={pristine || submitting} onClick={() => {reset(); onClear();}}>
             Clear
           </button>
         </div>
