@@ -5,7 +5,8 @@ import Result from './Result';
 
 function App({ address }) {
   return (
-    <div>
+    <div id='content'>
+      <h4>How far away are you?</h4>
       <Address />
       { address ? <Result /> : ''}
     </div>

@@ -2,9 +2,9 @@ import React from 'react';
 import connect from 'react-redux/es/connect/connect';
 
 const Result = ({ distance, address }) => (
-  <div>
+  <div id='result'>
     <p>
-      {Object.values(address).join(', ')} is {distance} meters from the office.
+      {address} is <strong>{new Intl.NumberFormat().format(distance)}</strong> meters from the office.
     </p>
   </div>
 );

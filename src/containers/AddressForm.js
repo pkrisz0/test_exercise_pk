@@ -1,18 +1,17 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
-const required = value => (value ? undefined : 'Mandatory');
-const textOnly = value => (/^[a-zA-Z]+$/.test(value) ? undefined : 'Letters only');
+const required = value => (value ? undefined : 'Mandatory field');
+const textOnly = value => (/\p{L}/.test(value) ? 'Letters only!' : undefined);
 
 const renderField = ({
   input, label, type, meta: { touched, error, warning },
 }) => (
   <div>
-    <label htmlFor={label}>{label}</label>
     <div>
-      <input {...input} placeholder={label} type={type} id={label} />
-      {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+      <input {...input} placeholder={label} type={type} id={label} className='form-control'/>
     </div>
+    {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
   </div>
 );
 
@@ -21,10 +20,10 @@ const AddressForm = (props) => {
     handleSubmit, pristine, reset, submitting, onClear
   } = props;
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
+    <form onSubmit={handleSubmit} >
         <Field
           name="country"
+          label="Country"
           component={renderField}
           type="text"
           placeholder="Country"
@@ -32,6 +31,7 @@ const AddressForm = (props) => {
         />
         <Field
           name="city"
+          label="City"
           component={renderField}
           type="text"
           placeholder="City"
@@ -39,20 +39,20 @@ const AddressForm = (props) => {
         />
         <Field
           name="street"
+          label="Street"
           component={renderField}
           type="text"
           placeholder="Street"
           className="form-control"
         />
         <div>
-          <button type="submit" disabled={pristine || submitting}>
+          <button type="submit" disabled={pristine || submitting} className='btn btn-secondary btn-sm'>
             Submit
           </button>
-          <button type="button" disabled={pristine || submitting} onClick={() => {reset(); onClear();}}>
+          <button type="button" disabled={pristine || submitting} onClick={() => {reset(); onClear();}} className='btn btn-secondary btn-sm'>
             Clear
           </button>
         </div>
-      </div>
     </form>
   );
 };
